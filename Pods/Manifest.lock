@@ -1,0 +1,22 @@
+PODS:
+  - Kingfisher (5.2.0)
+  - NVActivityIndicatorView (4.6.1):
+    - NVActivityIndicatorView/Presenter (= 4.6.1)
+  - NVActivityIndicatorView/Presenter (4.6.1)
+
+DEPENDENCIES:
+  - Kingfisher
+  - NVActivityIndicatorView
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Kingfisher
+    - NVActivityIndicatorView
+
+SPEC CHECKSUMS:
+  Kingfisher: 07067cfacf371117330dceb4b4b8f5c4b691ab42
+  NVActivityIndicatorView: 4ca19fccc84595a78957336a086d00a49be6ce61
+
+PODFILE CHECKSUM: 46f53816ff1adf9e74f51e4540bee4d9b940c62e
+
+COCOAPODS: 1.5.3

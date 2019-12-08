@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MasterDetail/ViewModels/ViewModel_MainVC.swift"
+            timestampString = "597518099.701431"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
+            landmarkName = "configureCell(cell:indexpath:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Kingfisher.Result&lt;Kingfisher.RetrieveImageResult, Kingfisher.KingfisherError&gt;) -&gt; () in MasterDetail.ViewModel_MainVC.configureCell(cell: MasterDetail.CustomTableViewCell, indexpath: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "MasterDetail"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/baljeet/Desktop/MasterDetail/MasterDetail/ViewModels/ViewModel_MainVC.swift"
+                  timestampString = "597518100.090338"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "76"
+                  endingLineNumber = "76"
+                  offsetFromSymbolStart = "592">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Kingfisher.Result&lt;Kingfisher.RetrieveImageResult, Kingfisher.KingfisherError&gt;) -&gt; () in MasterDetail.ViewModel_MainVC.configureCell(cell: MasterDetail.CustomTableViewCell, indexpath: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "MasterDetail"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/baljeet/Desktop/MasterDetail/MasterDetail/ViewModels/ViewModel_MainVC.swift"
+                  timestampString = "597518100.0942169"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "76"
+                  endingLineNumber = "76"
+                  offsetFromSymbolStart = "599">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

@@ -1,0 +1,7 @@
+target 'MasterDetail' do
+
+use_frameworks!
+
+pod 'Kingfisher'
+pod 'NVActivityIndicatorView'
+end
