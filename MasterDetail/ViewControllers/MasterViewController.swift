@@ -9,90 +9,100 @@
 import UIKit
 import NVActivityIndicatorView
 
-class MasterViewController: UITableViewController, NVActivityIndicatorViewable, DidSelectRowProtocal {
+class MasterViewController: UITableViewController, NVActivityIndicatorViewable {
     @IBOutlet var objViewModel: ViewModel_MainVC!
     var modelSelected:DataModel?
     var detailViewController: DetailViewController? = nil
-   
-
-
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-     //   navigationItem.leftBarButtonItem = editButtonItem
-
-//        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
-//        navigationItem.rightBarButtonItem = addButton
         
-      //  self.tableView.register(UINib.init(nibName: "", bundle: nil), forCellReuseIdentifier: "customCell")
+        
+        
+        updateUI()
+        
+   
         if let split = splitViewController {
             let controllers = split.viewControllers
             detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
             
             startAnimating()
-            objViewModel.delegate = self
             objViewModel.methodParsingCallBack {
                 DispatchQueue.main.async {
                     self.stopAnimating()
-                     self.tableView.reloadData()
+                    self.tableView.reloadData()
                 }
-               
-            }
                 
-            
             }
             
             
         }
+        
+        
+    }
+    func updateUI() {
+        //LEFT
+        let button: UIButton = UIButton(type: UIButton.ButtonType.custom)
+        button.setImage(UIImage(named: "side"), for: UIControl.State.normal)
+        button.addTarget(self, action: #selector(clickSideMenuLeft(_:)), for: .touchUpInside)
+        button.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        let barButton = UIBarButtonItem(customView: button)
+        self.navigationItem.leftBarButtonItem = barButton
+        
+        //Right
+        let button2: UIButton = UIButton(type: UIButton.ButtonType.custom)
+        button2.setImage(UIImage(named: "3-dot-icon"), for: UIControl.State.normal)
+        button2.addTarget(self, action: #selector(clickSideMenuRight(_:)), for: .touchUpInside)
+        button2.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        let barButton2 = UIBarButtonItem(customView: button2)
+        self.navigationItem.rightBarButtonItem = barButton2
+    }
     
-
     override func viewWillAppear(_ animated: Bool) {
         clearsSelectionOnViewWillAppear = splitViewController!.isCollapsed
         super.viewWillAppear(animated)
     }
-
-//    @objc
-//    func insertNewObject(_ sender: Any) {
-//        objects.insert(NSDate(), at: 0)
-//        let indexPath = IndexPath(row: 0, section: 0)
-//        tableView.insertRows(at: [indexPath], with: .automatic)
-//    }
-
-    // MARK: - Segues
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showDetails" {
-         //   if tableView.indexPathForSelectedRow != nil {
-               // let object = objects[indexPath.row] as! NSDate
-                let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
-                controller.detailItem = modelSelected
-                controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
-                controller.navigationItem.leftItemsSupplementBackButton = true
-          //  }
-        }
-    }
-
-    func passingModelObject(indexpath: IndexPath, model :DataModel){
-     
-        modelSelected = model
-        performSegue(withIdentifier: "showDetails", sender: nil)
+    
+    @objc
+    func clickSideMenuLeft(_ sender: Any) {
       
+        //Code for left menu
     }
     
-    // MARK: - Table View
-
+    @objc
+    func clickSideMenuRight(_ sender: Any) {
+      //Code for right menu
+    }
+    
+    // MARK: - Segues
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDetails" {
+            let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
+            controller.detailItem = modelSelected
+            controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
+            controller.navigationItem.leftItemsSupplementBackButton = true
+        }
+    }
+   
+    // MARK: - Table View Delegates and Data Source Methods
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        objViewModel.didSelectRow(indexpath: indexPath)
+       let dataModel =  objViewModel.didSelectRow(indexpath: indexPath)
+        modelSelected = dataModel
+        performSegue(withIdentifier: "showDetails", sender: nil)
         
     }
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return objViewModel.numberOfRowsInSection(section: section)
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         var cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell") as? CustomTableViewCell
@@ -102,18 +112,11 @@ class MasterViewController: UITableViewController, NVActivityIndicatorViewable, 
             cell = CustomTableViewCell.init(style: .default, reuseIdentifier: "CustomCell")
         }
         objViewModel.configureCell(cell: cell!, indexpath: indexPath)
-    
+        
         return cell!
-      
+        
     }
-
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-
-  
-
-
+    
+    
 }
 
