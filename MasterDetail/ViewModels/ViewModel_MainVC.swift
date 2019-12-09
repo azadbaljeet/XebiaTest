@@ -5,28 +5,21 @@
 //  Created by Sanjeev Kumar Gautam on 9/20/19.
 //  Copyright © 2019 teastallstudio. All rights reserved.
 //
-protocol DidSelectRowProtocal: class {
-    func passingModelObject(indexpath: IndexPath, model :DataModel)
-}
+
 import UIKit
 import Kingfisher
-/*
- 
- var carListModel: [CarListModel]?
- 
- */
+
 class ViewModel_MainVC: NSObject {
 var articalListModel: [DataModel]?
-    weak var delegate: DidSelectRowProtocal?
-    
+   
 @IBOutlet var objModelClassParse: ModelClass_Parsing!
     
     
     func methodParsingCallBack(completion:@escaping ()->()) {
   
-        objModelClassParse.methodParsing { (moves) in
+        objModelClassParse.methodParsing { (parsArray) in
             
-            let array = moves as [[String: Any]]
+            let array = parsArray as [[String: Any]]
             self.articalListModel = DataModel.dataFromResult(array)
                  completion()
             
@@ -38,13 +31,13 @@ var articalListModel: [DataModel]?
         }
         return 0
     }
-    func didSelectRow(indexpath: IndexPath) {
+    func didSelectRow(indexpath: IndexPath)-> DataModel {
+        var model: DataModel!
         
         if let arrModel = self.articalListModel{
-             let model = arrModel[indexpath.row]
-              delegate?.passingModelObject(indexpath: indexpath, model: model)
-            
+           model = arrModel[indexpath.row]
         }
+         return model
       
     }
    func configureCell(cell: CustomTableViewCell, indexpath: IndexPath) {
@@ -81,47 +74,6 @@ var articalListModel: [DataModel]?
         
     }
     
-    }
-        
-    
-    
-    func downloadImage(`with` urlString : String){
-        guard let url = URL.init(string: urlString) else {
-            return
-        }
-        let resource = ImageResource(downloadURL: url)
-        
-        KingfisherManager.shared.retrieveImage(with: resource, options: nil, progressBlock: nil) { result in
-            switch result {
-            case .success(let value):
-                print("Image: \(value.image). Got from: \(value.cacheType)")
-            case .failure(let error):
-                print("Error: \(error)")
-            }
-        }
-    }
-    
-    
-    
-    func mergeTextAndImge(strByLine:String, strDate: String) -> NSMutableAttributedString {
-        
-        let fullString = NSMutableAttributedString(string: strByLine)
-        
-        // create our NSTextAttachment
-        let image1Attachment = NSTextAttachment()
-        image1Attachment.image = UIImage(named: "calander.png")
-        
-        // wrap the attachment in its own attributed string so we can append it
-        let image1String = NSAttributedString(attachment: image1Attachment)
-        
-        // add the NSTextAttachment wrapper to our full string, then add some more text.
-        fullString.append(image1String)
-        fullString.append(NSAttributedString(string: strDate))
-        
-       return fullString
-        
-    }
-    
-
+}
     
 }
